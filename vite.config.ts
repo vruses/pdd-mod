@@ -20,7 +20,7 @@ export default defineConfig({
 			userscript: {
 				name: "pdd-mod",
 				version: "1.0.0",
-				description: "拼多多数据修改",
+				description: "拼多多后台信息修改",
 				grant: "none",
 				namespace: "vruses",
 				match: ["*://*.pinduoduo.com/*"],
