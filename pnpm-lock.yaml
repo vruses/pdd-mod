@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      element-ready:
+        specifier: ^9.0.0
+        version: 9.0.0
     devDependencies:
       '@biomejs/biome':
         specifier: 2.2.2
@@ -20,6 +24,9 @@ importers:
       lefthook:
         specifier: ^1.13.4
         version: 1.13.4
+      type-fest:
+        specifier: ^5.0.1
+        version: 5.0.1
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
@@ -498,6 +505,10 @@ packages:
     resolution: {integrity: sha512-N+MeXYoqr3pOgn8xfyRPREN7gHakLYjhsHhWGT3fWAiL4IkAt0iDw14QiiEm2bE30c5XX5q0FtAA3CK5f9/BUg==}
     engines: {node: '>=12'}
 
+  dom-mutations@1.0.2:
+    resolution: {integrity: sha512-gYhPPcSRbfMMl88YQecZiQErgKrz1X/umKf/cuJcnl6zMvMqaThNS37WVQ0MlpDXLQqj/LGKD6ucwpcONGTdGw==}
+    engines: {node: '>=18'}
+
   dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
 
@@ -510,6 +521,10 @@ packages:
 
   domutils@3.2.2:
     resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
+
+  element-ready@9.0.0:
+    resolution: {integrity: sha512-HnmHrq//iXA9+Sz5fbA+CEHMorWQCNc1drPMrmDzF3n18pqJd5nvmfcAIKizf9iPz67O2zGE1SfIisWCndtkKg==}
+    engines: {node: '>=20'}
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
@@ -673,6 +688,10 @@ packages:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
+  request-animation-frames@1.0.0:
+    resolution: {integrity: sha512-THOhYcI5OUY9M6IsmxW24/IItGwEUncfujiqwVF3DYxSxuEfrv1Z74KQfwAcH0zcGgzI5hgHtJEslPPhdRrJ5w==}
+    engines: {node: '>=18'}
+
   rollup@4.52.3:
     resolution: {integrity: sha512-RIDh866U8agLgiIcdpB+COKnlCreHJLfIhWC3LVflku5YHfpnsIKigRZeFfMfCc4dVcqNVfQQ5gO/afOck064A==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -701,9 +720,20 @@ packages:
   systemjs@6.15.1:
     resolution: {integrity: sha512-Nk8c4lXvMB98MtbmjX7JwJRgJOL8fluecYCfCeYBznwmpOs8Bf15hLM6z4z71EDAhQVrQrI+wt1aLWSXZq+hXA==}
 
+  tagged-tag@1.0.0:
+    resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
+    engines: {node: '>=20'}
+
   tinyglobby@0.2.15:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
     engines: {node: '>=12.0.0'}
+
+  type-fest@5.0.1:
+    resolution: {integrity: sha512-9MpwAI52m8H6ssA542UxSLnSiSD2dsC3/L85g6hVubLSXd82wdI80eZwTWhdOfN67NlA+D+oipAs1MlcTcu3KA==}
+    engines: {node: '>=20'}
+
+  typed-query-selector@2.12.0:
+    resolution: {integrity: sha512-SbklCd1F0EiZOyPiW192rrHZzZ5sBijB6xM+cpmrwDqObvdtunOHHIk9fCGsoK5JVIYXoyEp4iEdE3upFH3PAg==}
 
   typescript@5.9.2:
     resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
@@ -1118,6 +1148,8 @@ snapshots:
 
   define-lazy-prop@3.0.0: {}
 
+  dom-mutations@1.0.2: {}
+
   dom-serializer@2.0.0:
     dependencies:
       domelementtype: 2.3.0
@@ -1135,6 +1167,12 @@ snapshots:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
       domhandler: 5.0.3
+
+  element-ready@9.0.0:
+    dependencies:
+      dom-mutations: 1.0.2
+      request-animation-frames: 1.0.0
+      typed-query-selector: 2.12.0
 
   entities@4.5.0: {}
 
@@ -1291,6 +1329,8 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
+  request-animation-frames@1.0.0: {}
+
   rollup@4.52.3:
     dependencies:
       '@types/estree': 1.0.8
@@ -1333,10 +1373,18 @@ snapshots:
 
   systemjs@6.15.1: {}
 
+  tagged-tag@1.0.0: {}
+
   tinyglobby@0.2.15:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
+
+  type-fest@5.0.1:
+    dependencies:
+      tagged-tag: 1.0.0
+
+  typed-query-selector@2.12.0: {}
 
   typescript@5.9.2: {}
 
