@@ -8,12 +8,14 @@ import storage from "@/utils/storage";
  * @param parentSelector 目标元素父亲元素选择器
  * @param selector 数据列元素选择器
  * @param storageKey 对应数据列的本地存储key
+ * @param isFetch 是否通过接口请求的数据
  * @returns
  */
 async function dataPanelSetup<K extends StorageKey>(
 	parentSelector: string,
 	selector: string,
 	storageKey: K,
+	isFetch = false,
 ) {
 	const container = await elementReady(parentSelector, {
 		waitForChildren: true,
@@ -42,6 +44,8 @@ async function dataPanelSetup<K extends StorageKey>(
 		storage.set(storageKey, data);
 	});
 
+	// 通过接口加载数据则不需要修改html
+	if (isFetch) return;
 	// 按顺序替换子元素文本
 	for (const [index, element] of Array.from(dataCardElement).entries()) {
 		element.innerHTML = handleIndexData(index, data).toString();
