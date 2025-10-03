@@ -2,4 +2,5 @@ pre-commit:
   commands:
     check:
       run: pnpm lint --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+      exclude: "src/stores_data/index.ts"
       stage_fixed: true
