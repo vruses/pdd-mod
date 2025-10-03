@@ -6,16 +6,19 @@ import type {
 } from "@/home/type";
 
 /**
+ * @license
  * 实时成交金额数据，写入24组数据对应24小时，100等于1元
  */
 export const realTimeTrend = [100, 200, 300, 400];
 
 /**
+ * @license
  * 店铺logo
  */
 export const mall_logo = "https://img.cdn1.vip/i/68904debcff40_1754287595.webp";
 
 /**
+ * @license
  * 每月份的成交量，每组可写入31组数据，数字对应月份
  */
 export const monthList = {
@@ -32,11 +35,13 @@ export const monthList = {
 	11: [10000, 20000, 30000, 40000, 1100000, 10000, 20000, 30000, 40000],
 	12: [10000, 20000, 30000, 40000, 1200000, 10000, 20000, 30000, 40000],
 };
+
 /**
+ * @license
  * 每天的成交量，写入24组数据，第一个为0点数据，最后一个为23点
  */
+export const todayRtList = [1, 2, 3];
 
-export const todayRtList = [];
 /**dom和数据映射信息 */
 export type domMappingConfig = {
 	storageKey: StorageKey;
