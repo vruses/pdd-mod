@@ -62,8 +62,8 @@ export const aggregationInfoProps: Array<keyof AggregationInfoExtract> = [
 	"customerReplyRate3min",
 ];
 export const dataChartProps: Array<keyof DataChartExtract> = [
-	"curPayOrdrCnt", // 成交订单数
 	"curPayOrdrAmt", // 成交金额
+	"curPayOrdrCnt", // 成交订单数
 	"promotionSpend", // 推广花费
 	"guvOned", // 商品访客数
 	"gpvOned", // 商品浏览量
