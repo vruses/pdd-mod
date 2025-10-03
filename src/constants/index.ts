@@ -80,9 +80,9 @@ export const mallDataProps: Array<keyof MallDataExtract> = [
 	"unPrint",
 	"waitShipNum",
 	"waitFinishNum",
+	"totalWaitHandleCount",
 	"unShip12H",
 	"pendingOrder",
-	"totalWaitHandleCount",
 	"expireEarlyWarningCount",
 ];
 export const aggregationInfoProps: Array<keyof AggregationInfoExtract> = [
