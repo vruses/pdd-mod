@@ -236,12 +236,25 @@ export type DataTypeMap = {
 	[key: string]: unknown;
 };
 
-/**根据存储键返回对应的处理函数 */
+/**根据存储键返回对应的处理函数
+ * 将页面中的元素按顺序与对象属性一一对应
+ */
 export type IndexFunctionMap = {
 	mainMallData: IndexMallData;
 	aggregationInfo: IndexAggregationInfo;
 	manageDataChart: IndexDataChart;
 	dataChartSub: IndexDataChartSub;
+	[key: string]: unknown;
+};
+
+/**根据key返回对应的查询处理函数
+ * 根据nodeList获取的textContent返回对象
+ */
+export type QueryFunctionMap = {
+	mainMallData: (nodelist: NodeListOf<Element>) => MallDataExtract;
+	aggregationInfo: (nodelist: NodeListOf<Element>) => AggregationInfoExtract;
+	manageDataChart: (nodelist: NodeListOf<Element>) => DataChartExtract;
+	dataChartSub: (nodelist: NodeListOf<Element>) => DataChartExtract;
 	[key: string]: unknown;
 };
 
