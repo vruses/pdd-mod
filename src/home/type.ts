@@ -1,4 +1,4 @@
-import type { Simplify, ValueOf } from "type-fest";
+import type { SetReturnType, Simplify, ValueOf } from "type-fest";
 /* https://mms.pinduoduo.com/home/页面下相关的数据 */
 
 /*
@@ -118,7 +118,34 @@ export interface AggregationInfo {
 }
 
 /**home页面下第三排实时数据的数据结构 */
-export type ManageDataChart = {};
+export interface ManageDataChart {
+	/**成交订单数 */
+	curPayOrdrCnt: number;
+	/**成交金额 */
+	curPayOrdrAmt: number;
+	/**推广花费 */
+	promotionSpend: number;
+	/**商品访客数 */
+	guvOned: number;
+	/**商品浏览量 */
+	gpvOned: number;
+	/**商品评论数 */
+	goodsReviewCnt: number;
+	payOrdrUsrCnt: number;
+	statDate: null;
+	hr: null;
+	promotionGoodsCnt: number;
+	orderIndex: number;
+	payOrdrAmtShow: number;
+	payOrdrCntShow: number;
+	payOrdrUsrCntShow: number;
+	guvOnedShow: number;
+	gpvOnedShow: number;
+	goodsReviewCntShow: number;
+	promotionSpendShow: number;
+	promotionGoodsCntShow: number;
+	orderIndexShow: number;
+}
 
 /**
  * 提取第一排属性类型，用于简化本地存储数据结构
@@ -155,8 +182,19 @@ export type AggregationInfoExtract = Simplify<
 
 /**
  * 提取第三排属性类型，用于简化本地存储数据结构
+ * 下面小字共用一种数据结构（昨日数据）
  */
-export type DataChartExtract = {};
+export type DataChartExtract = Simplify<
+	Pick<
+		ManageDataChart,
+		| "curPayOrdrCnt" // 成交订单数
+		| "curPayOrdrAmt" // 成交金额
+		| "promotionSpend" // 推广花费
+		| "guvOned" // 商品访客数
+		| "gpvOned" // 商品浏览量
+		| "goodsReviewCnt" // 商品评论数
+	>
+>;
 
 /**
  * 根据下标提取第一排数据对应属性
@@ -184,3 +222,28 @@ export type IndexDataChart = (
 	index: number,
 	data: DataChartExtract,
 ) => ValueOf<DataChartExtract>;
+
+/**
+ * 需要拼接为html字符串
+ *  */
+export type IndexDataChartSub = SetReturnType<IndexDataChart, string>;
+
+export type DataTypeMap = {
+	mainMallData: MallDataExtract;
+	aggregationInfo: AggregationInfoExtract;
+	manageDataChart: DataChartExtract;
+	dataChartSub: DataChartExtract;
+	[key: string]: unknown;
+};
+
+/**根据存储键返回对应的处理函数 */
+export type IndexFunctionMap = {
+	mainMallData: IndexMallData;
+	aggregationInfo: IndexAggregationInfo;
+	manageDataChart: IndexDataChart;
+	dataChartSub: IndexDataChartSub;
+	[key: string]: unknown;
+};
+
+/**本地存储键 */
+export type StorageKey = Exclude<keyof IndexFunctionMap, number>;
