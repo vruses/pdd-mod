@@ -40,7 +40,8 @@ async function dataPanelSetup<K extends StorageKey>(
 	container.contentEditable = "true";
 	container.addEventListener("input", () => {
 		// 通过nodeList子元素列表获取textContent数据
-		const data = queryAndUpdateData(dataCardElement);
+		// 重新查询避免传入旧的dom节点
+		const data = queryAndUpdateData(container?.querySelectorAll(selector));
 		storage.set(storageKey, data);
 	});
 
@@ -48,7 +49,9 @@ async function dataPanelSetup<K extends StorageKey>(
 	if (isFetch) return;
 	// 按顺序替换子元素文本
 	for (const [index, element] of Array.from(dataCardElement).entries()) {
-		element.innerHTML = handleIndexData(index, data).toString();
+		if (!element.parentElement) return;
+		// 直接替换节点
+		element.parentElement.innerHTML = handleIndexData(index, data).toString();
 	}
 }
 

@@ -28,7 +28,19 @@ export const indexAggregationInfo: IndexAggregationInfo = (index, data) => {
 	if (index < 0 || index >= aggregationInfoProps.length) {
 		return 0;
 	}
-	return data[aggregationInfoProps[index]];
+	// 保持dom结构，div:[span,span]
+	const key = aggregationInfoProps[index];
+	if (
+		// 体检分、服务体验分、回复率
+		key === "avgAntiMallDescRevScr3mRcatePct" ||
+		key === "isTodayInspected" ||
+		key === "customerReplyRate3min"
+	) {
+		return `<span class="new-mall-data__service__card_num">${data[key]}.00</span>
+		<span class="manage-data-chart__panel__card__percenage">%</span>` as unknown as number;
+	}
+	return `<span class="new-mall-data__service__card_num">${data[key]}</span>
+		<span class="new-mall-data__service__card_char">${key === "mallStarTomms" ? "星" : key === "level" ? "级" : "分"}</span>` as unknown as number;
 };
 
 export const indexDataChart: IndexDataChart = (index, data) => {
