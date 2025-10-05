@@ -58,6 +58,8 @@ ajaxHooker.hook((request) => {
 		}
 		request.response = (res: FetchResponse) => {
 			const mainMallData = storage.get<MallDataExtract>("mainMallData");
+			const aggregationInfo =
+				storage.get<AggregationInfoExtract>("aggregationInfo");
 			if (!mainMallData) return;
 			// 修整mainMallData再用可变参数merge
 			const { totalWaitHandleCount, expireEarlyWarningCount, ...rest } =
@@ -69,7 +71,16 @@ ajaxHooker.hook((request) => {
 					expireEarlyWarningCount,
 				},
 			};
-			res.json.result = { ...res.json.result, ...mergedMallData };
+			res.json.result = {
+				...res.json.result,
+				...mergedMallData,
+				// 第二排询单转化率通过此接口获取
+				// isTodayInspected用于询单转化率数据下标占位
+				...{
+					inqueryRate:
+						(aggregationInfo?.isTodayInspected as unknown as number) / 100,
+				},
+			};
 		};
 	}
 
@@ -81,6 +92,11 @@ ajaxHooker.hook((request) => {
 			const aggregationInfo =
 				storage.get<AggregationInfoExtract>("aggregationInfo");
 			if (!aggregationInfo) return;
+			// 处理百分比显示问题
+			aggregationInfo.avgAntiMallDescRevScr3mRcatePct =
+				aggregationInfo.avgAntiMallDescRevScr3mRcatePct / 100;
+			aggregationInfo.customerReplyRate3min =
+				aggregationInfo.customerReplyRate3min / 100;
 			res.json.result = {
 				...res.json.result,
 				...aggregationInfo,
@@ -105,12 +121,18 @@ ajaxHooker.hook((request) => {
 			// 实时数据部分的小字
 			const dataChartSub = storage.get<DataChartExtract>("dataChartSub");
 			if (manageDataChart) {
+				// 处理百分比显示问题
+				manageDataChart.curPayOrdrAmt = manageDataChart.curPayOrdrAmt * 100;
+				manageDataChart.promotionSpend = manageDataChart.promotionSpend * 1000;
 				res.json.result.rtDataOverView = {
 					...res.json.result.rtDataOverView,
 					...manageDataChart,
 				};
 			}
 			if (dataChartSub) {
+				// 处理百分比显示问题
+				dataChartSub.curPayOrdrAmt = dataChartSub.curPayOrdrAmt * 100;
+				dataChartSub.promotionSpend = dataChartSub.promotionSpend * 1000;
 				res.json.result.yesterdayDataOverView = {
 					...res.json.result.yesterdayDataOverView,
 					...dataChartSub,

@@ -49,9 +49,13 @@ async function dataPanelSetup<K extends StorageKey>(
 	if (isFetch) return;
 	// 按顺序替换子元素文本
 	for (const [index, element] of Array.from(dataCardElement).entries()) {
-		if (!element.parentElement) return;
-		// 直接替换节点
-		element.parentElement.innerHTML = handleIndexData(index, data).toString();
+		// 第二排数据显示特殊，需要直接替换元素节点
+		if (storageKey === "aggregationInfo") {
+			if (!element.parentElement) return;
+			element.parentElement.innerHTML = handleIndexData(index, data).toString();
+		} else {
+			element.innerHTML = handleIndexData(index, data).toString();
+		}
 	}
 }
 

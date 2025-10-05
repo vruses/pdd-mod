@@ -92,6 +92,7 @@ export const aggregationInfoProps: Array<keyof AggregationInfoExtract> = [
 	"inspectScore",
 	"cstmrServScore",
 	// 质量体验排名没有数据，用于index占位
+	// 质量体验排名字段变询单转化率
 	"isTodayInspected",
 	"customerReplyRate3min",
 ];
