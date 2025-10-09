@@ -28,7 +28,6 @@ async function dataPanelSetup<K extends StorageKey>(
 	const queryAndUpdateData = getDataQueryByKey(storageKey);
 	if (
 		!container ||
-		!data ||
 		!dataCardElement ||
 		!handleIndexData ||
 		!queryAndUpdateData ||
@@ -45,8 +44,8 @@ async function dataPanelSetup<K extends StorageKey>(
 		storage.set(storageKey, data);
 	});
 
-	// 通过接口加载数据则不需要修改html
-	if (isFetch) return;
+	// 通过接口加载数据则不需要修改html，且没有data不需要修改
+	if (isFetch || data === void 0) return;
 	// 按顺序替换子元素文本
 	for (const [index, element] of Array.from(dataCardElement).entries()) {
 		// 第二排数据显示特殊，需要直接替换元素节点
