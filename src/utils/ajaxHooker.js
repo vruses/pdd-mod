@@ -435,9 +435,11 @@ var ajaxHooker = (() => {
 	}
 	function fakeXHR() {
 		const xhr = new winAh.realXHR();
-		if ("__ajaxHooker" in xhr)
+		if ("__ajaxHooker" in xhr) {
 			console.warn("检测到不同版本的ajaxHooker，可能发生冲突！");
-		xhr.__ajaxHooker = new XhrHooker(xhr);
+		}else{
+			xhr.__ajaxHooker = new XhrHooker(xhr);
+		}
 		return xhr.__ajaxHooker.proxyXhr;
 	}
 	fakeXHR.prototype = win.XMLHttpRequest.prototype;
@@ -542,12 +544,14 @@ var ajaxHooker = (() => {
 		realFetchClone: resProto.clone,
 		hookInsts: new Set(),
 	};
-	if (winAh.version !== version)
+	if (winAh.version !== version) {
 		console.warn("检测到不同版本的ajaxHooker，可能发生冲突！");
-	win.XMLHttpRequest = winAh.fakeXHR;
-	win.fetch = winAh.fakeFetch;
-	resProto.clone = winAh.fakeFetchClone;
-	winAh.hookInsts.add(hookInst);
+	} else if (!fakeXHR()) {
+		win.XMLHttpRequest = winAh.fakeXHR;
+		win.fetch = winAh.fakeFetch;
+		resProto.clone = winAh.fakeFetchClone;
+		winAh.hookInsts.add(hookInst);
+	}
 	// 针对头条、抖音 secsdk.umd.js 的兼容性处理
 	class AHFunction extends Function {
 		call(thisArg, ...args) {
