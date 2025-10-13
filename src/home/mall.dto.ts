@@ -36,7 +36,7 @@ export const indexAggregationInfo: IndexAggregationInfo = (index, data) => {
 		key === "isTodayInspected" ||
 		key === "customerReplyRate3min"
 	) {
-		return `<span class="new-mall-data__service__card_num">${data[key] || 0}.00</span>
+		return `<span class="new-mall-data__service__card_num">${data[key].toFixed(2) || "0.00"}</span>
 		<span class="manage-data-chart__panel__card__percenage">%</span>` as unknown as number;
 	}
 	return `<span class="new-mall-data__service__card_num">${data[key] || 0}</span>

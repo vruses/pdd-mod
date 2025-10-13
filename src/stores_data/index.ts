@@ -121,13 +121,12 @@ import storage from "@/utils/storage";
 				const data = await clonedResponse.json();
 				// 修改数据后返回一个新的 Response
 				const modifiedData = data;
+				// 代表日，昨日，或者周和月
+				const queryType = JSON.parse(init.body)?.queryType;
 				// 如果没有修改过，将返还原来的月份数据
 
 				// 如果不是月份信息和实时信息，而是7,30等
-				if (
-					JSON.parse(init.body)?.queryType !== 4 ||
-					JSON.parse(init.body)?.queryType !== 6
-				) {
+				if (queryType !== 0 || queryType !== 4 || queryType !== 6) {
 					// 如果信息修改过，则共用0月份数据
 					if (transactionInfoList[0]) {
 						modifiedData.result = {
@@ -137,7 +136,7 @@ import storage from "@/utils/storage";
 					}
 				}
 				// 如果查看的是实时交易量数据
-				if (JSON.parse(init.body)?.queryType === 6) {
+				if (queryType === 6) {
 					const mergeTransInfo = storage.get("transInfoListRT");
 					// 如果有对应月份的编辑信息
 					if (mergeTransInfo) {
@@ -157,7 +156,7 @@ import storage from "@/utils/storage";
 					);
 				}
 				// 如果查看的是月交易量数据
-				if (JSON.parse(init.body)?.queryType === 4) {
+				if (queryType === 4 || queryType === 0) {
 					const date = JSON.parse(init.body)?.queryDate;
 					const month = new Date(date).getMonth() + 1;
 					transactionMonth = month;
@@ -185,7 +184,7 @@ import storage from "@/utils/storage";
 					headers: response.headers,
 				});
 			}
-			// 交易数据列表
+			// 交易曲线数据
 			if (url.includes("/sydney/api/mallTrade/queryMallTradeList")) {
 				// 如果查看的是月交易量数据
 				if (JSON.parse(init.body)?.queryType === 4) {

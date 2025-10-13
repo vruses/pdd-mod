@@ -76,8 +76,8 @@ export interface AggregationInfo {
 	 * 最终显示为rank * 100%
 	 */
 	avgAntiMallDescRevScr3mRcatePct: number;
-	/**今日是否体检，默认为false，需要赋值为true */
-	isTodayInspected: boolean;
+	/**今日是否体检，默认为false，需要在替换数据时赋值为true，但本地存储使用number类型 */
+	isTodayInspected: number;
 	/**商品体检分，默认为null，需要改为number */
 	inspectScore: number;
 	/**服务体验分，默认为null，需要改为number */
