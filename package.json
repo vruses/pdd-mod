@@ -1,7 +1,7 @@
 {
 	"name": "pdd-mod",
 	"private": true,
-	"version": "0.0.0",
+	"version": "2.1.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
@@ -9,12 +9,14 @@
 		"preview": "vite preview",
 		"format": "biome format --write",
 		"lint": "biome check",
-		"lint:fix": "biome check --fix"
+		"lint:fix": "biome check --fix",
+		"release": "standard-version"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.2",
 		"@types/node": "^22.3.0",
 		"lefthook": "^1.13.4",
+		"standard-version": "^9.5.0",
 		"type-fest": "^5.0.1",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.2",
