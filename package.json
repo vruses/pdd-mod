@@ -10,7 +10,7 @@
 	"scripts": {
 		"dev": "vite",
 		"typecheck": "tsc --noEmit -p tsconfig.app.json",
-		"build": "typecheck && vite build",
+		"build": "pnpm typecheck && vite build",
 		"preview": "vite preview",
 		"format": "biome format --write",
 		"lint": "biome check",
