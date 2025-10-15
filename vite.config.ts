@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { defineConfig } from "vite";
 import monkey from "vite-plugin-monkey";
+import packageJSON from "./package.json";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,7 +20,7 @@ export default defineConfig({
 			entry: "src/main.ts",
 			userscript: {
 				name: "pdd-mod",
-				version: "2.0.0",
+				version: JSON.stringify(packageJSON.version),
 				description: "拼多多交易数据与首页数据修改",
 				grant: "none",
 				namespace: "vruses",
