@@ -9,8 +9,8 @@
 	},
 	"scripts": {
 		"dev": "vite",
-		"build": "vue-tsc -b && vite build",
-		"typecheck": "tsc --noEmit",
+		"typecheck": "tsc --noEmit -p tsconfig.app.json",
+		"build": "typecheck && vite build",
 		"preview": "vite preview",
 		"format": "biome format --write",
 		"lint": "biome check",
@@ -25,8 +25,7 @@
 		"type-fest": "^5.0.1",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.2",
-		"vite-plugin-monkey": "^7.1.1",
-		"vue-tsc": "^3.0.6"
+		"vite-plugin-monkey": "^7.1.1"
 	},
 	"dependencies": {
 		"element-ready": "^9.0.0"

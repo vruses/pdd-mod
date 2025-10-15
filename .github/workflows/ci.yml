@@ -5,7 +5,6 @@ on:
     branches:
       - master
     paths:
-      - "!src/stores_data/**"
       - "**.ts"
       - ".github/workflows/**"
       - ".vscode/**"
@@ -13,7 +12,6 @@ on:
     branches:
       - master
     paths:
-      - "!src/stores_data/**"
       - "**.ts"
       - ".github/workflows/**"
       - ".vscode/**"

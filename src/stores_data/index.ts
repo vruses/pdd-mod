@@ -1,3 +1,4 @@
+//biome-ignore-all lint: this is a migration
 //@ts-nocheck
 // https://mms.pinduoduo.com/sycm/stores_data页面相关的数据操作
 import { mall_logo, monthList, todayRtList } from "@/constants";
