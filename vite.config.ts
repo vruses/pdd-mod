@@ -20,7 +20,7 @@ export default defineConfig({
 			entry: "src/main.ts",
 			userscript: {
 				name: "pdd-mod",
-				version: JSON.stringify(packageJSON.version),
+				version: JSON.parse(packageJSON.version),
 				description: "拼多多交易数据与首页数据修改",
 				grant: "none",
 				namespace: "vruses",

@@ -115,7 +115,6 @@ import storage from "@/utils/storage";
 
 			// 交易数据信息
 			if (url.includes("/sydney/api/mallTrade/getMallTradeInfo")) {
-				console.log(url);
 				// 克隆响应流
 				const clonedResponse = response.clone();
 				// 读取 JSON 数据
@@ -126,6 +125,7 @@ import storage from "@/utils/storage";
 				const queryType = JSON.parse(init.body)?.queryType;
 				// 如果没有修改过，将返还原来的月份数据
 
+				// 6代表实时，0代表昨日，4代表月份
 				// 如果不是月份信息和实时信息，而是7,30等
 				if (queryType !== 0 || queryType !== 4 || queryType !== 6) {
 					// 如果信息修改过，则共用0月份数据
@@ -136,8 +136,8 @@ import storage from "@/utils/storage";
 						};
 					}
 				}
-				// 如果查看的是实时交易量数据
-				if (queryType === 6) {
+				// 如果查看的是实时或者昨日交易量数据
+				if (queryType === 6 || queryType === 0) {
 					const mergeTransInfo = storage.get("transInfoListRT");
 					// 如果有对应月份的编辑信息
 					if (mergeTransInfo) {
@@ -146,6 +146,7 @@ import storage from "@/utils/storage";
 							...mergeTransInfo,
 						};
 					}
+
 					// 每次请求时都需要处理一次
 					// 交易数据信息编辑
 					handleInfoEdit(
@@ -157,7 +158,7 @@ import storage from "@/utils/storage";
 					);
 				}
 				// 如果查看的是月交易量数据
-				if (queryType === 4 || queryType === 0) {
+				if (queryType === 4) {
 					const date = JSON.parse(init.body)?.queryDate;
 					const month = new Date(date).getMonth() + 1;
 					transactionMonth = month;
@@ -438,7 +439,6 @@ import storage from "@/utils/storage";
 			before = "请按照";
 			inside = "格式";
 		}
-		console.log(before, inside);
 		return {
 			mall_name,
 			nickname: inside,
@@ -459,13 +459,13 @@ import storage from "@/utils/storage";
 		// 获取元素信息
 		const ele = document.querySelector(selector);
 		ele.contentEditable = "true";
-		ele.addEventListener("input", function () {
+		// 切换时更新input事件
+		ele.oninput = function () {
 			// 获取数据
 			const data = queryFunc(this);
-			console.log(data);
 			// 本地存储数据
 			storage.set(storageKey, data);
-		});
+		};
 	}
 
 	// 处理账号类型显示（去除括号前的内容）
