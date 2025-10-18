@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.2](https://github.com/vruses/pdd-mod/compare/v2.3.1...v2.3.2) (2025-10-18)
+
+
+### Bug Fixes
+
+* 修复重复绑定input事件导致数据错误的问题 ([44ff247](https://github.com/vruses/pdd-mod/commit/44ff2472854c66c072766b776210ffaa8d7e3e5e))
+
 ### [2.3.1](https://github.com/vruses/pdd-mod/compare/v2.3.0...v2.3.1) (2025-10-15)
 
 ## 2.2.0 (2025-10-15)
