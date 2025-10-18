@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.3](https://github.com/vruses/pdd-mod/compare/v2.3.2...v2.3.3) (2025-10-18)
+
+
+### Bug Fixes
+
+* fix version ([edb90ef](https://github.com/vruses/pdd-mod/commit/edb90eff2bdcdec419f3ef6569e49db96413cd2f))
+
 ### [2.3.2](https://github.com/vruses/pdd-mod/compare/v2.3.1...v2.3.2) (2025-10-18)
 
 
